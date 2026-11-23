@@ -122,6 +122,16 @@ Todos los colores principales están centralizados en `:root` al inicio de `styl
 - **Ajuste 2.2 (Fondo 100% anclado al documento junto con textos e imágenes):**
   - Se cambió el lienzo del flujo (`.data-flow-canvas`), la cuadrícula (`.bg-grid`) y las esferas ambientales (`.bg-orb`) de `position: fixed` a **`position: absolute` anclados directamente al documento (`body`)**.
   - De esta forma el fondo toma como referencia exacta las imágenes y los textos y **viaja al unísono con ellos de forma nativa en el navegador** (sin depender de `window.scrollY` ni `ctx.translate` al hacer scroll), eliminando cualquier lagueo o tirón al bajar por la página mientras el flujo de datos sigue corriendo sin detenerse.
+- **Ajuste 2.3 (Publicación en Internet con Git + GitHub Pages):**
+  - **Repositorio oficial:** `https://github.com/androitecni-cmd/conectando-ia` (rama `main`).
+  - **URL pública en vivo (GitHub Pages):** `https://androitecni-cmd.github.io/conectando-ia/`
+  - **Cómo publicar cambios futuros:** basta con guardar los cambios en `d:\IA\mailo\Landing_page` y ejecutar:
+    ```powershell
+    git add .
+    git commit -m "Descripción del cambio"
+    git push
+    ```
+    GitHub Pages actualizará automáticamente la web en ~30 segundos.
 
 ---
 
