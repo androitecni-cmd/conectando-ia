@@ -1,1 +1,5 @@
 ﻿checkpoints/
+.DS_Store
+Thumbs.db
+maylo-key.local.js
+agente-maylo-backend.gs

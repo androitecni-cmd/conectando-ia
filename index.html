@@ -547,10 +547,24 @@
       </div>
 
       <div class="maylo-quick-prompts" id="mayloQuickPrompts">
-        <button type="button" class="chip-btn" data-scenario="pantalla">Cotizar pantalla iPhone 13</button>
-        <button type="button" class="chip-btn" data-scenario="inventario">Inventario y domicilio Bello</button>
+        <button type="button" class="chip-btn" data-scenario="como_ayudas">¿Cómo me puedes ayudar?</button>
+        <button type="button" class="chip-btn" data-scenario="planes">Planes y precios</button>
+        <button type="button" class="chip-btn" data-scenario="adecuacion">Prueba 24h y adecuación</button>
         <button type="button" class="chip-btn" data-scenario="retail">Mover stock de mi tienda</button>
       </div>
+
+      <form class="maylo-input-bar" id="mayloChatForm" autocomplete="off">
+        <input
+          type="text"
+          id="mayloChatInput"
+          class="maylo-chat-input"
+          placeholder="Escribe tu pregunta a Maylo..."
+          aria-label="Escribe tu pregunta a Maylo"
+        />
+        <button type="submit" class="maylo-send-btn" id="mayloSendBtn" aria-label="Enviar mensaje">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
 
       <div class="maylo-panel-footer">
         <a href="#agendar" class="btn-wa-direct" id="mayloWhatsappLink">
@@ -573,6 +587,7 @@
     </button>
   </div>
 
+  <script src="maylo-key.local.js"></script>
   <script src="script.js"></script>
   <script src="fondo-flujo.js"></script>
 </body>
