@@ -1053,6 +1053,7 @@ img, video {
 }
 
 .maylo-panel-body {
+  position: relative;
   padding: 1rem;
   height: min(360px, 52vh);
   overflow-y: auto;
@@ -1061,6 +1062,11 @@ img, video {
   gap: 0.7rem;
   background-image: radial-gradient(rgba(0, 210, 255, 0.05) 1px, transparent 1px);
   background-size: 16px 16px;
+  transition: height 0.25s ease;
+}
+
+.maylo-panel.chat-started .maylo-panel-body {
+  height: min(400px, 57vh);
 }
 
 .wa-msg ul {
@@ -1127,8 +1133,20 @@ img, video {
   flex-wrap: wrap;
   gap: 0.4rem;
   padding: 0.65rem 0.85rem;
+  max-height: 160px;
+  overflow: hidden;
   background: rgba(13, 25, 42, 0.9);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
+  transition: max-height 0.25s ease, opacity 0.2s ease, padding 0.25s ease, border-color 0.2s ease;
+}
+
+.maylo-quick-prompts.is-hidden {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top-color: transparent;
+  pointer-events: none;
 }
 
 .chip-btn {

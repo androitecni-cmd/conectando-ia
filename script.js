@@ -6,10 +6,14 @@
 // 1. Número oficial de WhatsApp (código de país sin "+" ni espacios, ej: "573001234567")
 const WHATSAPP_MAYLO = "";
 
-// 2. CONFIGURACIÓN EDITABLE DE PRECIOS, PLANES Y CONEXIÓN IA
+// 2. CONFIGURACIÓN EDITABLE DE PRECIOS, PLANES Y CONEXIÓN IA + PUENTE CRM DRIVE
 const CONFIG_AGENTE_MAYLO = {
-  // URL del puente seguro en Google Apps Script (para producción en GitHub Pages)
-  geminiProxyUrl: "",
+  // URL del puente seguro en Google Apps Script (IA en producción + guardado automático en CRM Landing Page de Google Drive)
+  geminiProxyUrl: "https://script.google.com/macros/s/AKfycbyW3b4Ymb7cyT6-PwBme1zBkm07rPQD8088SSPQ95zqumaSMrd8l8m6Sd8P0HDU20vN/exec",
+
+  // Hoja oficial "CRM Landing Page" en Google Drive (carpeta "landing page")
+  crmSheetId: "13d35jU4ONIFnqE3cux5NVSxPlFrHOXiPMF3u1PldYIw",
+  crmSheetUrl: "https://docs.google.com/spreadsheets/d/13d35jU4ONIFnqE3cux5NVSxPlFrHOXiPMF3u1PldYIw/edit",
 
   // Clave opcional directa (en tu PC se leen automáticamente de maylo-key.local.js)
   geminiApiKeyLocal: "",
@@ -64,8 +68,14 @@ function construirPromptMaestro() {
 
 TU FILOSOFÍA DE AUTONOMÍA TOTAL (REGLA CRÍTICA):
 - Eres 100% AUTOSUFICIENTE dentro de este chat. PROHIBIDO estar mandando al usuario al formulario de abajo, a otro link o a pedir la prueba de 24 horas en cada mensaje.
-- NO actúes como un recepcionista básico que evade las preguntas mandando a agendar una llamada. Tú mismo eres el consultor experto y demostrador en vivo: conversa con profundidad, analiza el negocio del usuario, hazle diagnósticos completos, calcula sus números, propón estrategias concretas, resuelve objeciones técnicas/operativas y simula en tiempo real cómo atenderías a los clientes de su empresa aquí mismo.
+- NO actúes como un recepcionista básico que evade las preguntas mandando a agendar una llamada. Tú mismo eres el consultor experto y demostrador en vivo: analiza el negocio del usuario, calcula sus números, propón ideas concretas, resuelve objeciones y simula en tiempo real cómo atenderías a sus clientes aquí mismo, pero SIEMPRE conversando poco a poco en mensajes cortos.
 - Solo menciona el formulario, la llamada o la prueba de 24 horas cuando el usuario EXPLÍCITAMENTE diga que ya quiere contratar, agendar o dejar sus datos (e incluso puedes tomarle nombre, negocio y WhatsApp directamente aquí en el chat).
+
+ESTILO DE COMUNICACIÓN BREVE E INTERACTIVO (REGLA OBLIGATORIA):
+- PROHIBIDO enviar bloques largos o agotadores de texto. Tus respuestas deben sentirse como un chat ágil de WhatsApp: usa de 2 a 4 líneas cortas por mensaje (aprox. 35 a 75 palabras).
+- Si el usuario solo saluda (ej. "hola", "buenas", "qué tal"), responde únicamente con un saludo cálido de 1 a 2 líneas y hazle UNA pregunta sencilla (ej. a qué se dedica su negocio o qué le gustaría mejorar) sin soltar listas ni explicaciones largas todavía.
+- Dosifica la información en ida y vuelta: entrega primero la idea clave que responde a su duda y termina con una pregunta corta para interactuar y profundizar según lo que más le interese.
+- Usa viñetas breves (máximo 3 o 4) solo cuando pidan planes/precios o comparaciones puntuales, manteniendo cada punto en una sola línea corta.
 
 CONOCIMIENTO INTEGRAL QUE DOMINAS A FONDO:
 
@@ -102,7 +112,7 @@ ${planesTexto}
 - Transparencia sobre cargos externos: el consumo oficial de mensajería de WhatsApp Business lo paga el negocio directo a Meta sin sobreprecios ni intermediación (nunca inventes tarifas de Meta), y el presupuesto de pauta publicitaria lo maneja el propio negocio.
 
 D) TUS CAPACIDADES INTERACTIVAS DENTRO DE ESTE CHAT:
-1. Consultoría y Diagnóstico a Fondo: si el usuario te cuenta su idea, problema o giro comercial, desglosa puntos concretos: dónde está perdiendo dinero o tiempo hoy, qué flujo exacto tendría su asistente, qué integraciones le convienen más y hazle el cálculo estimado de respuestas/mes y plan recomendado.
+1. Consultoría Paso a Paso y Captura Natural de Contacto: si el usuario te cuenta su idea o giro comercial, destaca en 2 o 3 líneas el beneficio principal para su negocio y hazle una pregunta puntual (ej. cuántos chats diarios recibe, cómo se llama su negocio o a qué WhatsApp le gustaría recibir su diagnóstico) para ir armando su perfil y plan juntos de forma natural.
 2. Simulación de Rol en Vivo (Roleplay): si el usuario quiere probar cómo atenderías su negocio (ej. "haz de cuenta que vendo repuestos / ropa / citas odontológicas y yo soy un cliente"), entra en papel de inmediato y demuéstrale una atención brillante, persuasiva y natural aquí mismo.
 3. Cuidado del lenguaje comercial:
    - Nunca digas "dos meses gratis": explica que son "dos meses de adecuación incluidos en la instalación" (y si preguntan por prueba corta antes de contratar, confirma que también existe la prueba de 24 horas).
@@ -110,9 +120,8 @@ D) TUS CAPACIDADES INTERACTIVAS DENTRO DE ESTE CHAT:
    - No menciones proveedores internos de modelos (Google, Gemini, OpenAI); habla siempre de "inteligencia artificial".
    - Nunca garantices un porcentaje fijo de ventas; garantiza atención inmediata 24/7 sin dejar clientes en visto y optimización mensual con datos reales.
 
-ESTILO DE COMUNICACIÓN:
-- Habla como un socio estratégico brillante, cercano, claro y estructurado.
-- Adapta la extensión a la pregunta: si te hacen una pregunta profunda o piden parámetros/estrategia, responde con riqueza, viñetas claras, ejemplos prácticos y números concretos. Termina continuando la conversación de forma inteligente sobre su caso (sin empujarlo a formularios ni links).`;
+ESTILO DE CIERRE EN CADA MENSAJE:
+- Habla como un socio estratégico cercano, claro y directo, manteniendo tus mensajes cortos y fáciles de leer de un vistazo (sin empujar a formularios ni links).`;
 }
 
 // 4. Cápsulas iniciales enfocadas en conversación profunda (sin ejemplo de iPhone 13)
@@ -138,15 +147,20 @@ const MAYLO_SCENARIOS = {
 // 5. Motor local enriquecido (solo actúa si el usuario se queda sin internet en su equipo)
 function responderSinConexion(textoUsuario) {
   const t = textoUsuario
+    .trim()
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 
-  if (t.includes("precio") || t.includes("plan") || t.includes("costo") || t.includes("cuanto") || t.includes("mensualidad")) {
-    return "Te detallo toda la estructura financiera de <strong>Maylo con IA</strong> para que puedas hacer cuentas exactas:<br><br>• <strong>Instalación ($2.000.000 COP en 2 pagos):</strong> abonas $1.000.000 al firmar y $1.000.000 el día de la entrega oficial, cuando ya ves a tu asistente operando.<br>• <strong>2 meses de adecuación incluidos:</strong> el mes 1 pagas $0 de mensualidad, y el mes 2 también $0 si no pasas de 3.000 respuestas (unas 500 conversaciones).<br>• <strong>Planes desde el mes 3:</strong><br>  – <strong>Esencial:</strong> $280.000/mes (3.000 resp. · ~500 conv.)<br>  – <strong>Impulso:</strong> $390.000/mes (6.000 resp. · ~1.000 conv.)<br>  – <strong>Crecimiento:</strong> $525.000/mes (10.000 resp. · ~1.600 conv.)<br>  – <strong>Pro:</strong> $980.000/mes (25.000 resp. · ~4.000 conv.)<br><br>Cuéntame aproximadamente cuántos chats recibes al día en tu negocio y te calculo de una vez qué plan te sale más rentable.";
+  if (/^(hola|buenas|buenos dias|buenas tardes|buenas noches|buen dia|hey|que tal|saludos)\b/.test(t) && t.length < 28) {
+    return "¡Hola! Qué gusto saludarte 👋 Soy <strong>Maylo</strong>. Cuéntame, ¿de qué trata tu negocio o en qué te gustaría que te ayude hoy?";
   }
 
-  return "En <strong>Conectando IA</strong> trabajamos tu crecimiento comercial en dos frentes simultáneos:<br><br>1. <strong>Expansión comercial activa:</strong> prospección en frío, presencia en eventos y distribución para llevar clientes reales a tu oferta.<br>2. <strong>Operación inteligente 24/7 conmigo (Maylo):</strong> me conecto a tu mismo número de WhatsApp Business para atender de día, noche y domingos, escuchar notas de voz, cotizar tu inventario, agendar citas y verificar transferencias directo contra el aviso de tu banco.<br><br>Cuéntame de qué trata tu negocio, cuántos mensajes manejas al día o si quieres que hagamos aquí mismo una simulación en vivo atendiendo a un cliente tuyo.";
+  if (t.includes("precio") || t.includes("plan") || t.includes("costo") || t.includes("cuanto") || t.includes("mensualidad")) {
+    return "Así funciona <strong>Maylo con IA</strong> de forma resumida:<br><br>• <strong>Instalación:</strong> $2.000.000 COP en 2 pagos (incluye 2 meses de adecuación).<br>• <strong>Planes desde el mes 3:</strong> Esencial ($280.000), Impulso ($390.000), Crecimiento ($525.000) o Pro ($980.000).<br><br>¿Cuántos mensajes recibes más o menos al día para decirte cuál plan te conviene?";
+  }
+
+  return "En <strong>Conectando IA</strong> combinamos ventas presenciales/prospección con mi atención 24/7 en tu mismo WhatsApp Business (cotizaciones, inventario, citas y verificación de pagos).<br><br>Cuéntame a qué se dedica tu negocio y vemos cómo aplicarlo en tu caso.";
 }
 
 function formatearRespuestaIA(texto) {
@@ -172,8 +186,143 @@ function formatearRespuestaIA(texto) {
   return html;
 }
 
-// 6. Consulta autónoma con respaldo multicapa de llaves y modelos (con timeout corto por intento)
+// 6. Consulta autónoma con respaldo multicapa y puente automático hacia Google Drive ("CRM Landing Page")
 const historialConversacion = [];
+const CLAVE_SESION_MAYLO = "maylo_crm_session_id";
+const CLAVE_COLA_PENDIENTE = "maylo_crm_pending_queue_v1";
+
+function obtenerSessionIdMaylo() {
+  try {
+    let sid = sessionStorage.getItem(CLAVE_SESION_MAYLO);
+    if (!sid) {
+      sid = "lp_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 6);
+      sessionStorage.setItem(CLAVE_SESION_MAYLO, sid);
+    }
+    return sid;
+  } catch {
+    return "lp_" + Date.now().toString(36);
+  }
+}
+
+function horaActualCorta() {
+  const d = new Date();
+  return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+}
+
+function obtenerUrlPuenteCrm() {
+  return (
+    CONFIG_AGENTE_MAYLO.geminiProxyUrl ||
+    (typeof window !== "undefined" && window.MAYLO_BRIDGE_URL) ||
+    (typeof localStorage !== "undefined" && localStorage.getItem("MAYLO_BRIDGE_URL")) ||
+    ""
+  ).trim();
+}
+
+function extraerDatosClienteLocal(extra = {}) {
+  const datos = { ...extra };
+  const textosUsuario = historialConversacion
+    .filter((m) => m.role !== "model")
+    .map((m) => String(m.text || "").trim());
+  const unido = textosUsuario.join(" | ");
+
+  if (!datos.correo) {
+    const mMail = unido.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+    if (mMail) datos.correo = mMail[0];
+  }
+  if (!datos.telefono && !datos.whatsapp) {
+    const mTel = unido.match(/(?:\+?57[\s-]?)?(?:3\d{2}[\s-]?\d{3}[\s-]?\d{4}|\d{7,10})/);
+    if (mTel) {
+      datos.telefono = mTel[0].trim();
+      datos.whatsapp = mTel[0].trim();
+    }
+  }
+  if (!datos.representante) {
+    const mNom = unido.match(/(?:me llamo|mi nombre es|hablas con|soy)\s+([A-ZÁÉÍÓÚÑa-záéíóúñ]+(?:\s+[A-ZÁÉÍÓÚÑa-záéíóúñ]+){0,2})/i);
+    if (mNom && !/^(un|una|el|la|de|cliente|dueño|dueno|interesado)\b/i.test(mNom[1].trim())) {
+      datos.representante = mNom[1].trim();
+    }
+  }
+  if (!datos.ciudad) {
+    const mCiu = unido.match(/\b(Medell[ií]n|Bello|Envigado|Itag[uü][ií]|Sabaneta|Bogot[aá]|Cali|Barranquilla|Cartagena|Bucaramanga|Pereira|Manizales|Armenia|C[uú]cuta|Ibagu[eé]|Pasto|Monter[ií]a|Villavicencio|Rionegro)\b/i);
+    if (mCiu) datos.ciudad = mCiu[1];
+  }
+  if (!datos.nicho) {
+    const mNic = unido.match(/(?:tengo\s+(?:un|una)|negocio\s+de|tienda\s+de|empresa\s+de|vendo|vendemos|somos\s+(?:un|una))\s+([a-záéíóúñA-ZÁÉÍÓÚÑ0-9\s]{3,32})/i);
+    if (mNic) datos.nicho = mNic[1].trim();
+  }
+  if (!datos.resumen && textosUsuario.length > 0) {
+    datos.resumen = textosUsuario.slice(0, 3).join(" · ").slice(0, 260);
+  }
+  return datos;
+}
+
+function guardarRespaldoPendienteLocal(payload) {
+  try {
+    const cola = JSON.parse(localStorage.getItem(CLAVE_COLA_PENDIENTE) || "{}");
+    cola[payload.sessionId] = payload;
+    localStorage.setItem(CLAVE_COLA_PENDIENTE, JSON.stringify(cola));
+  } catch { /* sin almacenamiento disponible */ }
+}
+
+async function vaciarColaPendienteDrive() {
+  const bridgeUrl = obtenerUrlPuenteCrm();
+  if (!bridgeUrl) return;
+  try {
+    const cola = JSON.parse(localStorage.getItem(CLAVE_COLA_PENDIENTE) || "{}");
+    const sesiones = Object.values(cola);
+    if (!sesiones.length) return;
+    for (const item of sesiones) {
+      const r = await fetch(bridgeUrl, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ ...item, action: "save_lead" })
+      });
+      if (r.ok) {
+        delete cola[item.sessionId];
+      }
+    }
+    localStorage.setItem(CLAVE_COLA_PENDIENTE, JSON.stringify(cola));
+  } catch (err) {
+    console.warn("Cola local pendiente por sincronizar:", err);
+  }
+}
+
+async function sincronizarInteraccionConDrive(origen = "Chat Maylo IA", datosExtra = {}) {
+  const payload = {
+    action: "save_lead",
+    sessionId: obtenerSessionIdMaylo(),
+    origen,
+    cliente: extraerDatosClienteLocal(datosExtra),
+    history: historialConversacion.slice()
+  };
+
+  const bridgeUrl = obtenerUrlPuenteCrm();
+  if (!bridgeUrl) {
+    guardarRespaldoPendienteLocal(payload);
+    return { ok: false, enColaLocal: true };
+  }
+
+  try {
+    const resp = await fetch(bridgeUrl, {
+      method: "POST",
+      keepalive: true,
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data && data.ok) {
+        vaciarColaPendienteDrive();
+        return data;
+      }
+    }
+    guardarRespaldoPendienteLocal(payload);
+    return { ok: false };
+  } catch (err) {
+    guardarRespaldoPendienteLocal(payload);
+    return { ok: false, error: err.message };
+  }
+}
 
 async function fetchConTimeout(url, options, timeoutMs = 8500) {
   const controller = new AbortController();
@@ -187,28 +336,36 @@ async function fetchConTimeout(url, options, timeoutMs = 8500) {
 
 async function consultarAgenteMaylo(mensajeUsuario) {
   const promptMaestro = construirPromptMaestro();
-  historialConversacion.push({ role: "user", text: mensajeUsuario });
+  const horaMsg = horaActualCorta();
+  historialConversacion.push({ role: "user", text: mensajeUsuario, time: horaMsg });
 
-  // Opción A: Puente seguro en Google Apps Script (producción en GitHub Pages)
-  if (CONFIG_AGENTE_MAYLO.geminiProxyUrl) {
+  const bridgeUrl = obtenerUrlPuenteCrm();
+
+  // Opción A: Puente seguro en Google Apps Script (IA + guardado automático en CRM Landing Page en 1 solo paso)
+  if (bridgeUrl) {
     try {
       const resp = await fetchConTimeout(
-        CONFIG_AGENTE_MAYLO.geminiProxyUrl,
+        bridgeUrl,
         {
           method: "POST",
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({
+            action: "chat",
+            sessionId: obtenerSessionIdMaylo(),
+            origen: "Chat Maylo IA",
+            cliente: extraerDatosClienteLocal(),
             systemPrompt: promptMaestro,
-            history: historialConversacion.slice(-14),
+            history: historialConversacion.slice(-20),
             message: mensajeUsuario
           })
         },
-        12000
+        14000
       );
       if (resp.ok) {
         const data = await resp.json();
         if (data && data.reply) {
-          historialConversacion.push({ role: "model", text: data.raw || data.reply });
+          historialConversacion.push({ role: "model", text: data.raw || data.reply, time: horaActualCorta() });
+          vaciarColaPendienteDrive();
           return data.reply;
         }
       }
@@ -236,7 +393,7 @@ async function consultarAgenteMaylo(mensajeUsuario) {
       contents,
       generationConfig: {
         temperature: 0.5,
-        maxOutputTokens: 1400,
+        maxOutputTokens: 650,
         thinkingConfig: { thinkingLevel: "LOW" }
       }
     });
@@ -246,7 +403,7 @@ async function consultarAgenteMaylo(mensajeUsuario) {
       contents,
       generationConfig: {
         temperature: 0.5,
-        maxOutputTokens: 1400
+        maxOutputTokens: 650
       }
     });
 
@@ -273,7 +430,8 @@ async function consultarAgenteMaylo(mensajeUsuario) {
               .join("")
               .trim();
             if (textoIA) {
-              historialConversacion.push({ role: "model", text: textoIA });
+              historialConversacion.push({ role: "model", text: textoIA, time: horaActualCorta() });
+              sincronizarInteraccionConDrive("Chat Maylo IA");
               return formatearRespuestaIA(textoIA);
             }
           }
@@ -286,7 +444,8 @@ async function consultarAgenteMaylo(mensajeUsuario) {
 
   // Opción C: Respaldo sin internet
   const respuestaOffline = responderSinConexion(mensajeUsuario);
-  historialConversacion.push({ role: "model", text: respuestaOffline });
+  historialConversacion.push({ role: "model", text: respuestaOffline, time: horaActualCorta() });
+  sincronizarInteraccionConDrive("Chat Maylo IA");
   return respuestaOffline;
 }
 
@@ -318,6 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mayloBody = document.getElementById("mayloWidgetBody");
   const mayloStatus = document.getElementById("mayloWidgetStatus");
   const mayloWhatsappLink = document.getElementById("mayloWhatsappLink");
+  const mayloQuickPrompts = document.getElementById("mayloQuickPrompts");
   const mayloChatForm = document.getElementById("mayloChatForm");
   const mayloChatInput = document.getElementById("mayloChatInput");
   const openFromHero = document.getElementById("openMayloFromHero");
@@ -333,7 +493,24 @@ document.addEventListener("DOMContentLoaded", () => {
     div.className = `wa-msg ${sender}`;
     div.innerHTML = `${text}<span class="wa-time">${time}</span>`;
     mayloBody.appendChild(div);
-    mayloBody.scrollTop = mayloBody.scrollHeight;
+
+    if (sender === "maylo") {
+      if (mayloBody.children.length <= 1) {
+        mayloBody.scrollTop = 0;
+      } else {
+        requestAnimationFrame(() => {
+          const bodyRect = mayloBody.getBoundingClientRect();
+          const msgRect = div.getBoundingClientRect();
+          const targetTop = mayloBody.scrollTop + (msgRect.top - bodyRect.top) - 10;
+          mayloBody.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: "smooth"
+          });
+        });
+      }
+    } else {
+      mayloBody.scrollTop = mayloBody.scrollHeight;
+    }
   }
 
   function addTyping() {
@@ -346,9 +523,23 @@ document.addEventListener("DOMContentLoaded", () => {
     return div;
   }
 
+  function ocultarCapsulasRapidas() {
+    if (mayloQuickPrompts && !mayloQuickPrompts.classList.contains("is-hidden")) {
+      mayloQuickPrompts.classList.add("is-hidden");
+      mayloQuickPrompts.setAttribute("aria-hidden", "true");
+      setTimeout(() => {
+        mayloQuickPrompts.style.display = "none";
+      }, 240);
+    }
+    if (mayloPanel) {
+      mayloPanel.classList.add("chat-started");
+    }
+  }
+
   async function procesarPreguntaEnVivo(textoUsuario) {
     if (enviandoMensaje || !textoUsuario) return;
     enviandoMensaje = true;
+    ocultarCapsulasRapidas();
 
     const escapedUser = textoUsuario
       .replace(/&/g, "&amp;")
@@ -374,7 +565,7 @@ document.addEventListener("DOMContentLoaded", () => {
     widgetInitialized = true;
     addMessage(
       "maylo",
-      "¡Hola! Soy <strong>Maylo</strong>, consultor con inteligencia artificial de <strong>Conectando IA</strong> 👋 Cuéntame sobre tu negocio, pídeme cálculos de planes, resolvamos dudas operativas a fondo o hagamos aquí mismo una simulación en vivo atendiendo a tus clientes.",
+      "¡Hola! Soy <strong>Maylo</strong>, consultor con IA de <strong>Conectando IA</strong> 👋 Cuéntame sobre tu negocio o dime qué duda quieres resolver hoy.",
       "Ahora"
     );
   }
@@ -421,6 +612,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Envío de preguntas abiertas escritas por el visitante
   if (mayloChatForm && mayloChatInput) {
+    mayloChatInput.addEventListener("input", () => {
+      if (mayloChatInput.value.trim().length > 0) {
+        ocultarCapsulasRapidas();
+      }
+    });
+
     mayloChatForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const userText = mayloChatInput.value.trim();
@@ -526,6 +723,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.getElementById("contactForm");
   const formStatus = document.getElementById("formStatus");
 
+  // Si había interacciones en cola local y ya se configuró el puente, sincronizarlas en segundo plano
+  vaciarColaPendienteDrive();
+
   if (contactForm && formStatus) {
     contactForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -539,6 +739,14 @@ document.addEventListener("DOMContentLoaded", () => {
         formStatus.textContent = "Por favor completa tu nombre, tipo de negocio y WhatsApp.";
         return;
       }
+
+      sincronizarInteraccionConDrive("Formulario Landing Page", {
+        representante: nombre,
+        nombre: empresa,
+        telefono: whatsapp,
+        whatsapp,
+        resumen: objetivo ? `Formulario: ${objetivo}` : "Solicitó Llamada Consultiva en formulario"
+      });
 
       if (WHATSAPP_MAYLO) {
         const text = encodeURIComponent(

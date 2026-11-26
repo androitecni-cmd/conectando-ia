@@ -1,8 +1,8 @@
 # Documentación del Proyecto — Landing Page Conectando IA
 
 **Proyecto:** Landing Page Oficial de **Conectando IA** (`conectandoia.com`)  
-**Carpetas locales sincronizadas:** `d:\IA\Landing page` y `d:\IA\mailo\Landing_page`  
-**Última actualización:** 24 de noviembre de 2026  
+**Carpeta local única oficial:** `d:\IA\Landing page`  
+**Última actualización:** 26 de noviembre de 2026  
 
 ---
 
@@ -155,11 +155,20 @@ Todos los colores principales están centralizados en `:root` al inicio de `styl
     - **Prompt Maestro de Consultor Senior:** no deriva repetitivamente al formulario ni a enlaces externos; diagnostica el negocio, calcula matemáticamente el volumen mensual de respuestas, recomienda el plan óptimo y ejecuta simulaciones de rol en vivo dentro del mismo chat.
     - **Respaldo multi-llave y multi-modelo:** usa `gemini-3-flash-preview` (`thinkingLevel: "LOW"`, `maxOutputTokens: 1400`) con failover automático a `gemini-3.5-flash-lite` y `gemini-flash-lite-latest`.
     - **Seguridad de credenciales:** las llaves viven únicamente en `maylo-key.local.js` y `agente-maylo-backend.gs`, ambos excluidos en `.gitignore` para que nunca se publiquen en el repositorio público.
+- **Ajuste 2.5 y Consolidación en Carpeta Única (25–26 nov 2026):**
+  - **Cápsulas rápidas auto-ocultables:** `#mayloQuickPrompts` se repliega y pasa a `display: none` al escribir el primer carácter o enviar mensaje, ampliando el alto útil del chat, con control de caché `?v=2.5` en `index.html`.
+  - **Scroll al inicio del mensaje:** cada respuesta nueva de Maylo alinea el comienzo del texto en pantalla para leer de arriba hacia abajo.
+  - **Respuestas breves e interactivas:** tope ajustado a `650` tokens y prompt de consultoría paso a paso (2 a 4 líneas cortas estilo WhatsApp; 1 a 2 líneas al saludar).
+  - **Unificación definitiva:** se consolidaron todos los archivos en `d:\IA\Landing page` como única carpeta oficial y se eliminó la copia duplicada `d:\IA\mailo\Landing_page`.
 
 ---
 
-## 7. Pendientes para Próximas Fases
+## 7. Puente CRM hacia Google Drive y Próximos Pasos en Némesis
 
-- Publicar `agente-maylo-backend.gs` como Aplicación Web en `https://script.google.com` y pegar su URL `/exec` en `CONFIG_AGENTE_MAYLO.geminiProxyUrl` dentro de `script.js` para que el dominio público consulte la IA a través del puente privado.
-- Conectar el número oficial de WhatsApp de **Maylo** en la constante `WHATSAPP_MAYLO` dentro de `script.js`.
-- Revisar y aprobar los textos de las secciones 3 a 7 detalle a detalle y enlazar el dominio personalizado **conectandoia.com**.
+- **Hoja oficial creada en Google Drive (`landing page` -> `CRM Landing Page`):**
+  - **ID:** `13d35jU4ONIFnqE3cux5NVSxPlFrHOXiPMF3u1PldYIw`
+  - **Enlace directo:** `https://docs.google.com/spreadsheets/d/13d35jU4ONIFnqE3cux5NVSxPlFrHOXiPMF3u1PldYIw/edit`
+- **Puente listo en `agente-maylo-backend.gs` y `script.js` (`v2.6`):**
+  - Cada visitante que interactúa con **Maylo** o envía el **formulario inferior** queda creado automáticamente como usuario (por `ID Sesion` / teléfono sin duplicar filas) con sus datos (`Dueño`, `Nombre`, `Teléfono/WhatsApp`, `Correo`, `Ciudad`, `Nicho`, `Estado`) más su **conversación completa** (texto legible y JSON estructurado con horas).
+  - **URL activa del puente Apps Script (`geminiProxyUrl`):** `https://script.google.com/macros/s/AKfycbyW3b4Ymb7cyT6-PwBme1zBkm07rPQD8088SSPQ95zqumaSMrd8l8m6Sd8P0HDU20vN/exec`
+- **Pestaña en Némesis 2 completada:** botón **`Landing Page`** (exclusivo de Administrador) conectado directamente al puente y a `CRM Landing Page` para ver usuarios creados y todas sus interacciones con Maylo.
